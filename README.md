@@ -13,17 +13,21 @@ Deploy a secure & highly available static website on AWS S3 using Terraform whil
 Set up an S3 bucket to store website files.
 Enable static website hosting with an index.html page.
 Apply IAM policies & S3 bucket policies for security.
+
 2️⃣ Attach CloudFront for Performance & Security
 Configure CloudFront to serve the website globally.
 Use Origin Access Control (OAC) to restrict S3 access only to CloudFront.
 Set up HTTPS (SSL/TLS) encryption for secure traffic.
+
 3️⃣ Configure a Custom Domain with Route 53
 Register a domain name or use an existing one.
 Create A-records in Route 53 pointing to CloudFront.
 Ensure NS records match the domain registrar for proper DNS resolution.
+
 4️⃣ Implement IAM & Security Policies
 Restrict direct S3 access, allowing only CloudFront to serve content.
 Apply a least privilege IAM role to manage resources securely.
+
 📌 Deployment Steps
 🔹 Step 1: Set Up Terraform & Variables
 Initialize Terraform and define the S3, CloudFront, and Route 53 configurations.
