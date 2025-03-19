@@ -13,7 +13,7 @@ This project aims to securely deploy a static website using AWS S3, CloudFront, 
 | AWS IAM        | Security policies to control access                     |
 
 ## 📁 Project Structure
-
+```
 AWS_S3_BUCKET_TERRAFORM/
 │
 ├── .terraform/                      # Terraform's internal files and state
@@ -53,7 +53,7 @@ AWS_S3_BUCKET_TERRAFORM/
 │   ├── assets/                        # Images and logos
 │
 └── README.md                         # Documentation and project instructions
-
+```
 
 ## 📌 Key Tasks & Architecture
 
