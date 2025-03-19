@@ -107,6 +107,7 @@ Clone this repository and navigate to the Terraform directory.
      terraform output alb_dns
      ```
    - Open the DNS URL in a browser.
+   - 🔗 https://yourdomain.com
 
 ## **Destroy Infrastructure**
 To remove all AWS resources:
