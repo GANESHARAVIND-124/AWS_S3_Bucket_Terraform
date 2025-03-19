@@ -1,38 +1,81 @@
- Build a Secure AWS S3 Bucket with Terraform (For Hosting Static Websites)
+🚀 Deploy a Secure Static Website on AWS S3 with Terraform
 🎯 Objective
-Deploy a secure & highly available static website on AWS S3 using Terraform while ensuring security and performance with CloudFront, Route 53, and IAM policies.
+This project aims to securely deploy a static website using AWS S3, CloudFront, Route 53, and IAM with Terraform. The website will be highly available, performant, and protected from unauthorized access.
 
 🛠 Tech Stack
-✔ AWS S3 – Static Web Hosting
-✔ AWS CloudFront – Content Delivery Network (CDN)
-✔ AWS Route 53 – Domain Name System (DNS)
-✔ AWS IAM – Security Policies
+Service Purpose
+AWS S3 Static website hosting
+AWS CloudFront Content Delivery Network (CDN) for performance & security
+AWS Route 53 Domain Name System (DNS) for custom domain
+AWS IAM Security policies to control access
 
-📌 Key Tasks
-1️⃣ Create an S3 Bucket for Static Website Hosting
-Set up an S3 bucket to store website files.
-Enable static website hosting with an index.html page.
-Apply IAM policies & S3 bucket policies for security.
+AWS_S3_BUCKET_TERRAFORM/
+│
+├── .terraform/                      # Terraform's internal files and state
+│   ├── .terraform.lock.hcl          # Lock file for provider versions
+│   ├── terraform.tfstate            # Current infrastructure state
+│   └── modules/                     # Cached modules (if used)
+│
+├── backend.tf                       # Backend configuration for Terraform state management
+├── main.tf                          # Main Terraform configuration file (calls modules)
+├── providers.tf                     # Provider configuration (e.g., AWS)
+├── backend.tf                      # Backend configuration for state management
+├── terraform.tfvars                 # Variable values for Terraform configuration
+├── variables.tf                     # Variable definitions
+├── index.html                       # Homepage of the static website
+├── error.html                       # Custom error page
+│
+├── modules/                          # Custom modules for organizing resources
+│   ├── s3/                           # Module for S3 Static Website Hosting
+│   │   ├── main.tf                   # S3 bucket configuration (with static website enabled)
+│   │   ├── s3-policy.json            # JSON policy for securing S3 access
+│   │   ├── outputs.tf                # Outputs for the S3 module
+│   │   └── variables.tf              # Variables for the S3 module
+│   │
+│   ├── cloudfront/                   # Module for CloudFront (CDN and security)
+│   │   ├── main.tf                   # CloudFront distribution configuration
+│   │   ├── origin-access-control.tf  # CloudFront OAC setup for secure access
+│   │   ├── outputs.tf                # Outputs for the CloudFront module
+│   │   └── variables.tf              # Variables for the CloudFront module
+│   │
+│   ├── route53/                      # Module for Domain Management (Route 53)
+│   │   ├── main.tf                   # Route 53 hosted zone & DNS configuration
+│   │   ├── outputs.tf                # Outputs for the Route 53 module
+│   │   └── variables.tf              # Variables for the Route 53 module
+│
+│
+└── README.md                         # Documentation and project instructions
 
-2️⃣ Attach CloudFront for Performance & Security
-Configure CloudFront to serve the website globally.
-Use Origin Access Control (OAC) to restrict S3 access only to CloudFront.
-Set up HTTPS (SSL/TLS) encryption for secure traffic.
+📌 Key Tasks & Architecture:
 
-3️⃣ Configure a Custom Domain with Route 53
-Register a domain name or use an existing one.
-Create A-records in Route 53 pointing to CloudFront.
-Ensure NS records match the domain registrar for proper DNS resolution.
+1.Create an S3 Bucket for Static Website Hosting
+    * Set up an S3 bucket to store website files.
+    * Enable static website hosting with an index.html page.
+    * Apply IAM policies & S3 bucket policies for security.   
 
-4️⃣ Implement IAM & Security Policies
-Restrict direct S3 access, allowing only CloudFront to serve content.
-Apply a least privilege IAM role to manage resources securely.
+2️.Attach CloudFront for Performance & Security
+    * Configure CloudFront to distribute website content globally.
+    * Use Origin Access Control (OAC) to restrict S3 access only to CloudFront.
+    * Set up HTTPS (SSL/TLS) encryption to secure website traffic.
 
+3️.Configure a Custom Domain with Route 53
+    * Register a domain using Route 53 (or use an existing one).
+    * Create A-records in Route 53 pointing to CloudFront.
+    * Ensure NS records match the domain registrar for proper DNS resolution.
+
+4️.Implement IAM & Security Policies
+    * Restrict direct S3 access, allowing only CloudFront to serve content.
+    * Apply least-privilege IAM roles to manage resources securely.
+    * Use CloudFront Signed URLs or Signed Cookies if advanced security is needed.
+    
 📌 Deployment Steps
 🔹 Step 1: Set Up Terraform & Variables
-Initialize Terraform and define the S3, CloudFront, and Route 53 configurations.
+Ensure you have Terraform installed and AWS credentials configured.
+Clone this repository and navigate to the Terraform directory.
 
 🔹 Step 2: Deploy Infrastructure
+Run the following commands to deploy the infrastructure:
+
 sh
 Copy
 Edit
@@ -40,21 +83,24 @@ terraform init
 terraform validate  
 terraform apply -auto-approve  
 🔹 Step 3: Verify Website Availability
-Check the Route 53 DNS records:
+Check if the Route 53 DNS records are properly configured:
 
 sh
 Copy
 Edit
 aws route53 list-resource-record-sets --hosted-zone-id <HOSTED_ZONE_ID>
-Access the website in a browser:
+Once the DNS changes propagate, access the website in a browser:
 🔗 https://yourdomain.com
 
-✅ Key Security Measures
-✔ CloudFront OAC – Ensures only CloudFront can access S3.
-✔ HTTPS via CloudFront – Encrypts all traffic.
-✔ IAM Policies – Restricts access to resources.
+✅ Security Best Practices
+✔ CloudFront Origin Access Control (OAC): Ensures only CloudFront can access S3.
+✔ HTTPS via CloudFront: Encrypts all website traffic for security.
+✔ IAM Policies & Bucket Policies: Restrict public access to the S3 bucket.
+✔ DNSSEC (Domain Name Security Extension): Protects against DNS spoofing (optional).
 
 🚀 Future Enhancements
-🔹 Automate deployments with CI/CD pipelines.
-🔹 Add AWS WAF for enhanced security.
-🔹 Implement logging & monitoring for analytics.
+
+🔹 Automate deployments with CI/CD pipelines (e.g., GitHub Actions, AWS CodePipeline).
+🔹 Enhance security with AWS WAF (Web Application Firewall) to block malicious requests.
+🔹 Enable logging & monitoring using AWS CloudWatch & S3 Access Logs.
+🔹 Set up AWS Certificate Manager (ACM) to auto-renew SSL certificates.
