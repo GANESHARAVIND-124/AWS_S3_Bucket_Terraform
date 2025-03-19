@@ -67,7 +67,7 @@ AWS_S3_BUCKET_TERRAFORM/
     * Restrict direct S3 access, allowing only CloudFront to serve content.
     * Apply least-privilege IAM roles to manage resources securely.
     * Use CloudFront Signed URLs or Signed Cookies if advanced security is needed.
-
+    
 📌 Deployment Steps
 🔹 Step 1: Set Up Terraform & Variables
 Ensure you have Terraform installed and AWS credentials configured.
@@ -99,7 +99,13 @@ Once the DNS changes propagate, access the website in a browser:
 ✔ DNSSEC (Domain Name Security Extension): Protects against DNS spoofing (optional).
 
 🚀 Future Enhancements
+<<<<<<< HEAD
 🔹 Automate deployments with CI/CD pipelines (e.g., GitHub Actions, AWS CodePipeline).
 🔹 Enhance security with AWS WAF (Web Application Firewall) to block malicious requests.
 🔹 Enable logging & monitoring using AWS CloudWatch & S3 Access Logs.
 🔹 Set up AWS Certificate Manager (ACM) to auto-renew SSL certificates.
+=======
+🔹 Automate deployments with CI/CD pipelines.
+🔹 Add AWS WAF for enhanced security.
+🔹 Implement logging & monitoring for analytics.
+>>>>>>> 58c0015f0e8ad8b7cff105722d5a25b71f752f64
