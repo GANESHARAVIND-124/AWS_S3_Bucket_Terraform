@@ -46,6 +46,11 @@ AWS_S3_BUCKET_TERRAFORM/
 │   │   ├── main.tf                   # Route 53 hosted zone & DNS configuration
 │   │   ├── outputs.tf                # Outputs for the Route 53 module
 │   │   └── variables.tf              # Variables for the Route 53 module
+├── website/                          # Static website files
+│   ├── index.html                    # Homepage
+│   ├── error.html                    # Custom error page
+│   ├── styles.css                    # Styling
+│   ├── assets/                        # Images and logos
 │
 └── README.md                         # Documentation and project instructions
 
