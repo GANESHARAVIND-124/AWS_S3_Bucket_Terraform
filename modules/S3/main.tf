@@ -41,7 +41,7 @@ resource "aws_s3_bucket_versioning" "versioning" {
 resource "aws_s3_object" "website_index" {
   bucket = aws_s3_bucket.static_website.id
   key    = "index.html"
-  source = "C:\\Users\\1090079.ANALANCE\\Documents\\Terraform_projects\\AWS_S3_Bucket_Terraform\\index.html"
+  source = "C:\\Users\\1090079.ANALANCE\\Documents\\Terraform_projects\\AWS_S3_Bucket_Terraform\\websites\\index.html"
   content_type = "text/html"
 }
 
@@ -50,7 +50,7 @@ resource "aws_s3_object" "website_index" {
 resource "aws_s3_object" "website_error" {
   bucket = aws_s3_bucket.static_website.bucket
   key    = "error.html"
-  source = "C:\\Users\\1090079.ANALANCE\\Documents\\Terraform_projects\\AWS_S3_Bucket_Terraform\\error.html"
+  source = "C:\\Users\\1090079.ANALANCE\\Documents\\Terraform_projects\\AWS_S3_Bucket_Terraform\\websites\\error.html"
   content_type = "text/html"
 }
 
