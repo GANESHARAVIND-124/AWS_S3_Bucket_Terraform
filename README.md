@@ -74,12 +74,6 @@ AWS_S3_BUCKET_TERRAFORM/
 
 ## 📌 Deployment Steps
 
-🔹 **Step 1: Set Up Terraform & Variables**  
-Ensure you have Terraform installed and AWS credentials configured.  
-Clone this repository and navigate to the Terraform directory.
-
-
-
 1. **Initialize Terraform**
    ```sh
    terraform init
@@ -104,3 +98,23 @@ To remove all AWS resources:
 ```sh
 terraform destroy -auto-approve
 ```
+## **Verify Website Availability**
+Check if the Route 53 DNS records are properly configured:
+
+```sh
+aws route53 list-resource-record-sets --hosted-zone-id <HOSTED_ZONE_ID>
+```
+Once the DNS changes propagate, access the website in a browser:
+🔗 https://yourdomain.com
+
+✅ Security Best Practices
+✔ CloudFront Origin Access Control (OAC): Ensures only CloudFront can access S3.
+✔ HTTPS via CloudFront: Encrypts all website traffic for security.
+✔ IAM Policies & Bucket Policies: Restrict public access to the S3 bucket.
+✔ DNSSEC (Domain Name Security Extension): Protects against DNS spoofing (optional).
+
+🚀 Future Enhancements
+🔹 Automate deployments with CI/CD pipelines (e.g., GitHub Actions, AWS CodePipeline).
+🔹 Enhance security with AWS WAF (Web Application Firewall) to block malicious requests.
+🔹 Enable logging & monitoring using AWS CloudWatch & S3 Access Logs.
+🔹 Set up AWS Certificate Manager (ACM) to auto-renew SSL certificates.
