@@ -13,7 +13,7 @@ This project aims to securely deploy a static website using AWS S3, CloudFront, 
 | AWS IAM        | Security policies to control access                     |
 
 ## 📁 Project Structure
-'''
+```
 AWS_S3_BUCKET_TERRAFORM/
 │
 ├── .terraform/                      # Terraform's internal files and state
@@ -48,7 +48,7 @@ AWS_S3_BUCKET_TERRAFORM/
 │   │   └── variables.tf              # Variables for the Route 53 module
 │
 └── README.md                         # Documentation and project instructions
-'''
+```
 
 ## 📌 Key Tasks & Architecture
 
@@ -78,16 +78,29 @@ AWS_S3_BUCKET_TERRAFORM/
 Ensure you have Terraform installed and AWS credentials configured.  
 Clone this repository and navigate to the Terraform directory.
 
-🔹 **Step 2: Deploy Infrastructure**  
-Run the following commands to deploy the infrastructure:
-
-```bash
-terraform init  
-terraform validate  
-terraform apply -auto-approve  
 
 
-🔹 Step 3: Verify Website Availability
+1. **Initialize Terraform**
+   ```sh
+   terraform init
+   ```
+2. **Plan the Deployment**
+   ```sh
+   terraform plan
+   ```
+3. **Apply Terraform Configuration**
+   ```sh
+   terraform apply -auto-approve
+   ```
+4. **Access the Application**
+   - Retrieve ALB DNS:
+     ```sh
+     terraform output alb_dns
+     ```
+   - Open the DNS URL in a browser.
 
-Check if the Route 53 DNS records are properly configured:
-aws route53 list-resource-record-sets --hosted-zone-id <HOSTED_ZONE_ID>
+## **Destroy Infrastructure**
+To remove all AWS resources:
+```sh
+terraform destroy -auto-approve
+```
